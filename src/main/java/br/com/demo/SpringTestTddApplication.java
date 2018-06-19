@@ -1,4 +1,4 @@
-package br.com.tests;
+package br.com.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

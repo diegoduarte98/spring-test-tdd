@@ -1,4 +1,4 @@
-package br.com.tests.modelo;
+package br.com.demo.modelo;
 
 import java.util.List;
 

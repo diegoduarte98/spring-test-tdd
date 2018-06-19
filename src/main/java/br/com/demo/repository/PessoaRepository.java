@@ -1,10 +1,10 @@
-package br.com.tests.repository;
+package br.com.demo.repository;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.tests.modelo.Pessoa;
+import br.com.demo.modelo.Pessoa;
 
 public interface PessoaRepository extends JpaRepository<Pessoa, Long>{
 

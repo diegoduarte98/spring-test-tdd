@@ -1,14 +1,14 @@
-package br.com.tests.service.impl;
+package br.com.demo.service.impl;
 
 import java.util.Optional;
 
-import br.com.tests.modelo.Pessoa;
-import br.com.tests.modelo.Telefone;
-import br.com.tests.repository.PessoaRepository;
-import br.com.tests.service.PessoaService;
-import br.com.tests.service.exception.TelefoneNaoEncontratoException;
-import br.com.tests.service.exception.UnicidadeCpfException;
-import br.com.tests.service.exception.UnicidadeTelefoneException;
+import br.com.demo.modelo.Pessoa;
+import br.com.demo.modelo.Telefone;
+import br.com.demo.repository.PessoaRepository;
+import br.com.demo.service.PessoaService;
+import br.com.demo.service.exception.TelefoneNaoEncontratoException;
+import br.com.demo.service.exception.UnicidadeCpfException;
+import br.com.demo.service.exception.UnicidadeTelefoneException;
 
 public class PessoaServiceImpl implements PessoaService {
 

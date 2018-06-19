@@ -1,4 +1,4 @@
-package br.com.tests.service.exception;
+package br.com.demo.service.exception;
 
 public class UnicidadeCpfException extends Exception {
 

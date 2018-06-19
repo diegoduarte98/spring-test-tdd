@@ -13,13 +13,14 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import br.com.tests.modelo.Pessoa;
-import br.com.tests.modelo.Telefone;
-import br.com.tests.repository.PessoaRepository;
-import br.com.tests.service.exception.TelefoneNaoEncontratoException;
-import br.com.tests.service.exception.UnicidadeCpfException;
-import br.com.tests.service.exception.UnicidadeTelefoneException;
-import br.com.tests.service.impl.PessoaServiceImpl;
+import br.com.demo.modelo.Pessoa;
+import br.com.demo.modelo.Telefone;
+import br.com.demo.repository.PessoaRepository;
+import br.com.demo.service.PessoaService;
+import br.com.demo.service.exception.TelefoneNaoEncontratoException;
+import br.com.demo.service.exception.UnicidadeCpfException;
+import br.com.demo.service.exception.UnicidadeTelefoneException;
+import br.com.demo.service.impl.PessoaServiceImpl;
 
 @RunWith(SpringRunner.class)
 public class PessoaServiceTest {

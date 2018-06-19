@@ -1,4 +1,4 @@
-package br.com.tests.modelo;
+package br.com.demo.modelo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
