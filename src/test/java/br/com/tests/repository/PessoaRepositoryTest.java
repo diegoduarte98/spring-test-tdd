@@ -36,4 +36,11 @@ public class PessoaRepositoryTest {
 		assertThat(pessoa.getCpf()).isEqualTo("38767897100");
 		
 	}
+	
+	@Test
+	public void deve_encontrar_pessoa_cpf_inexistente() {
+		Optional<Pessoa> optional = pessoaRepository.findByCpf("88888888888");
+		
+		assertThat(optional.isPresent()).isFalse();
+	}
 }
