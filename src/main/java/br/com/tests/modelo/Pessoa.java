@@ -10,13 +10,17 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Builder
 @Data
 @Entity
 @Table(name = "pessoa")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Pessoa {
 
 	@Id
