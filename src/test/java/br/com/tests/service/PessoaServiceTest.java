@@ -51,7 +51,7 @@ public class PessoaServiceTest {
 		pessoa = Pessoa.builder().nome(NOME).cpf(CPF).telefones(Arrays.asList(telefone)).build();
 		
 		when(pessoaRepository.findByCpf(CPF)).thenReturn(Optional.empty());
-		when(pessoaRepository.findByTelefonesDddAndTelefonesNumero(DDD, NUMERO)).thenReturn(Optional.empty());
+		when(pessoaRepository.findByTelefoneDddAndTelefoneNumero(DDD, NUMERO)).thenReturn(Optional.empty());
 	}
 
 	@Test
@@ -70,7 +70,7 @@ public class PessoaServiceTest {
 
 	@Test(expected = UnicidadeTelefoneException.class)
 	public void nao_deve_salvar_duas_pessoas_com_o_mesmo_telefone() throws Exception {
-		when(pessoaRepository.findByTelefonesDddAndTelefonesNumero(DDD, NUMERO)).thenReturn(Optional.of(pessoa));
+		when(pessoaRepository.findByTelefoneDddAndTelefoneNumero(DDD, NUMERO)).thenReturn(Optional.of(pessoa));
 
 		pessoaService.salvar(pessoa);
 	}
@@ -84,11 +84,11 @@ public class PessoaServiceTest {
 	@Test
 	public void deve_procurar_pessoa_pelo_ddd_e_numero_do_telefone() throws Exception {
 		
-		when(pessoaRepository.findByTelefonesDddAndTelefonesNumero(DDD, NUMERO)).thenReturn(Optional.of(pessoa));
+		when(pessoaRepository.findByTelefoneDddAndTelefoneNumero(DDD, NUMERO)).thenReturn(Optional.of(pessoa));
 		
 		Pessoa pessoa = pessoaService.buscarPorTelefone(telefone);
 		
-		verify(pessoaRepository).findByTelefonesDddAndTelefonesNumero(DDD, NUMERO);
+		verify(pessoaRepository).findByTelefoneDddAndTelefoneNumero(DDD, NUMERO);
 		
 		assertThat(pessoa).isNotNull();
 		assertThat(pessoa.getNome()).isEqualTo(NOME);
