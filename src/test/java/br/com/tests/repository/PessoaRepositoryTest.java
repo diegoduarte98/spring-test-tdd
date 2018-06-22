@@ -59,7 +59,7 @@ public class PessoaRepositoryTest {
 		assertThat(pessoa.getNome()).isEqualTo("Cauê");
 		assertThat(pessoa.getCpf()).isEqualTo("38767897100");
 	}
-	
+
 	@Test
 	public void nao_deve_encontrar_pessoa_cujo_ddd_e_telefone_nao_estejam_cadastradados() {
 		Optional<Pessoa> optional = pessoaRepository.findByTelefoneDddAndTelefoneNumero("11", "888888888888	");
