@@ -11,6 +11,6 @@ public class SpringTestTddApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		assertThat("S").isEqualTo("S");
+		assertThat("Teste").isEqualTo("Teste");
 	}
 }
