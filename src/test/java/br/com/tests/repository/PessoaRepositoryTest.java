@@ -68,22 +68,49 @@ public class PessoaRepositoryTest {
 
 		assertThat(optional.isPresent()).isFalse();
 	}
-	
+
 	@Test
 	public void deve_filtrar_pessoas_por_parte_do_nome() {
 		PessoaFiltro filtro = PessoaFiltro.builder().nome("a").build();
-		
+
 		List<Pessoa> pessoas = pessoaRepository.filtrar(filtro);
-		
+
 		assertThat(pessoas.size()).isEqualTo(3);
 	}
-	
+
 	@Test
 	public void deve_filtrar_pessoas_por_parte_do_cpf() {
 		PessoaFiltro filtro = PessoaFiltro.builder().cpf("78").build();
-		
+
 		List<Pessoa> pessoas = pessoaRepository.filtrar(filtro);
-		
+
 		assertThat(pessoas.size()).isEqualTo(3);
+	}
+
+	@Test
+	public void deve_filtrar_pessoas_por_filtro_composto() {
+		PessoaFiltro filtro = PessoaFiltro.builder().nome("a").cpf("78").build();
+
+		List<Pessoa> pessoas = pessoaRepository.filtrar(filtro);
+
+		assertThat(pessoas.size()).isEqualTo(2);
+	}
+
+	@Test
+	public void deve_filtrar_pessoas_pelo_ddd_do_telefone() {
+		PessoaFiltro filtro = PessoaFiltro.builder().ddd("21").build();
+
+		List<Pessoa> pessoas = pessoaRepository.filtrar(filtro);
+
+		assertThat(pessoas.size()).isEqualTo(1);
+	}
+
+	@Test
+	public void deve_filtrar_pessoas_pelo_numero_do_telefone() {
+		PessoaFiltro filtro = PessoaFiltro.builder().telefone("999570146").build();
+
+		List<Pessoa> pessoas = pessoaRepository.filtrar(filtro);
+
+		assertThat(pessoas.size()).isEqualTo(1);
 	}
 }

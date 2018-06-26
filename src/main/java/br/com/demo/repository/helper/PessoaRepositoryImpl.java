@@ -25,18 +25,28 @@ public class PessoaRepositoryImpl implements PessoaRepositoryQueries {
 	public List<Pessoa> filtrar(PessoaFiltro filtro) {
 
 		final StringBuilder sb = new StringBuilder();
-		sb.append(" SELECT bean FROM Pessoa bean WHERE 1=1 ");
+		sb.append(" SELECT pessoa FROM Pessoa pessoa JOIN pessoa.telefones telefone WHERE 1=1 ");
 
 		final Map<String, Object> params = new HashMap<>();
-		
+
 		if (StringUtils.hasText(filtro.getNome())) {
-			sb.append(" AND bean.nome LIKE :nome ");
+			sb.append(" AND pessoa.nome LIKE :nome ");
 			params.put("nome", "%" + filtro.getNome() + "%");
 		}
 
 		if (StringUtils.hasText(filtro.getCpf())) {
-			sb.append(" AND bean.cpf LIKE :cpf ");
+			sb.append(" AND pessoa.cpf LIKE :cpf ");
 			params.put("cpf", "%" + filtro.getCpf() + "%");
+		}
+
+		if (StringUtils.hasText(filtro.getDdd())) {
+			sb.append(" AND telefone.ddd = :ddd ");
+			params.put("ddd", filtro.getDdd());
+		}
+
+		if (StringUtils.hasText(filtro.getTelefone())) {
+			sb.append(" AND telefone.numero = :numero ");
+			params.put("numero", filtro.getTelefone());
 		}
 
 		TypedQuery<Pessoa> query = manager.createQuery(sb.toString(), Pessoa.class);
