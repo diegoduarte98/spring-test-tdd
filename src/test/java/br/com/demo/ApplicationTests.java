@@ -1,4 +1,4 @@
-package br.com.tests;
+package br.com.demo;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
