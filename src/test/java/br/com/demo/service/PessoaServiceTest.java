@@ -8,7 +8,9 @@ import java.util.Arrays;
 import java.util.Optional;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -16,8 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import br.com.demo.modelo.Pessoa;
 import br.com.demo.modelo.Telefone;
 import br.com.demo.repository.PessoaRepository;
-import br.com.demo.service.PessoaService;
-import br.com.demo.service.exception.TelefoneNaoEncontratoException;
+import br.com.demo.service.exception.TelefoneNaoEncontradoException;
 import br.com.demo.service.exception.UnicidadeCpfException;
 import br.com.demo.service.exception.UnicidadeTelefoneException;
 import br.com.demo.service.impl.PessoaServiceImpl;
@@ -35,6 +36,9 @@ public class PessoaServiceTest {
 
 	@MockBean
 	private PessoaRepository pessoaRepository;
+	
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
 
 	private PessoaService pessoaService;
 
@@ -75,11 +79,18 @@ public class PessoaServiceTest {
 		pessoaService.salvar(pessoa);
 	}
 	
-	@Test(expected = TelefoneNaoEncontratoException.class)
+	@Test(expected = TelefoneNaoEncontradoException.class)
 	public void deve_retornar_execao_de_nao_encontrado_quando_nao_existir_pessoa_com_o_ddd_e_numero_de_telefone() throws Exception {
 		pessoaService.buscarPorTelefone(telefone);
-		
 	}
+	
+	@Test
+    public void deve_retornar_dados_do_telefone_dentro_da_excecao_de_telefone_nao_encontrado_exception() throws Exception {
+        expectedException.expect(TelefoneNaoEncontradoException.class);
+        expectedException.expectMessage("Não existe pessoa com o telefone (" + DDD +")" + NUMERO);
+
+        pessoaService.buscarPorTelefone(telefone);
+    }
 	
 	@Test
 	public void deve_procurar_pessoa_pelo_ddd_e_numero_do_telefone() throws Exception {
