@@ -65,15 +65,21 @@ public class PessoaServiceTest {
 		verify(pessoaRepository).save(pessoa);
 	}
 
-	@Test(expected = UnicidadeCpfException.class)
+	@Test
 	public void nao_deve_salvar_duas_pessoas_com_o_mesmo_cpf() throws Exception {
+		expectedException.expect(UnicidadeCpfException.class);
+		expectedException.expectMessage("Já existe pessoa cadastrada com o CPF "+ CPF);
+
 		when(pessoaRepository.findByCpf(CPF)).thenReturn(Optional.of(pessoa));
 
 		pessoaService.salvar(pessoa);
 	}
 
-	@Test(expected = UnicidadeTelefoneException.class)
+	@Test
 	public void nao_deve_salvar_duas_pessoas_com_o_mesmo_telefone() throws Exception {
+		expectedException.expect(UnicidadeTelefoneException.class);
+        expectedException.expectMessage("Já existe pessoa cadastrada com o Telefone ("+ DDD +")" + NUMERO);
+        
 		when(pessoaRepository.findByTelefoneDddAndTelefoneNumero(DDD, NUMERO)).thenReturn(Optional.of(pessoa));
 
 		pessoaService.salvar(pessoa);
